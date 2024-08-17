@@ -1,0 +1,181 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f8f8f8;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 50px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+}
+
+header nav ul li {
+    margin-right: 20px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.contact-btn a {
+    position: fixed;
+    top: 20px;
+    right: 50px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 1000; /* Butonun diğer elemanların üstünde görünmesini sağlar */
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+    background-color: #fff;
+    margin-bottom: 50px;
+}
+
+.hero-content {
+    max-width: 50%;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero-content h1 span {
+    color: #ff7e5f;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.hire-me-btn {
+    padding: 15px 30px;
+    background-color: #ff7e5f;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.hire-me-btn:hover {
+    background-color: #e0674b;
+}
+
+.skills {
+    display: flex;
+    margin-top: 30px;
+}
+
+.skills .skill {
+    background-color: #333;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 1rem;
+}
+
+.hero-image {
+    position: relative;
+}
+
+.hero-image img {
+    border-radius: 50%;
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    transform: scaleX(-1);
+}
+
+.experience {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.projects {
+    text-align: center;
+    padding: 50px;
+}
+
+.projects h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+.projects-list {
+    display: flex;
+    justify-content: center;
+}
+
+.project-item {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+    position: relative;
+}
+
+.project-item img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.project-number {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.all-projects a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+footer {
+    padding: 20px;
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+}
