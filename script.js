@@ -10,3 +10,7 @@ window.addEventListener('scroll', function() {
         }
     });
 });
+
+document.querySelector('.contact-btn').addEventListener('click', function() {
+    this.classList.add('clicked');
+});
