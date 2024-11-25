@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="contact-btn">
+                <a href="https://www.linkedin.com/in/sametburhan" target="_blank" class="contact-link">Contact Me</a>
+            </div>
+            
+            <!-- The overlay -->
+            <div id="myNav" class="overlay">
+            <!-- Button to close the overlay navigation -->
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <!-- Hamburger Menu Button -->
+                <div class="overlay-content">
+                    <ul>
+                        <li><a href="about.html">About Me</a></li>
+                        <li><a href="experience.html">Experience</a></li>
+                        <li><a href="cooperation.html">Cooperation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Use any element to open/show the overlay navigation menu -->
+            <span onclick="openNav()">open</span>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>My name is <span>Samet</span></h1>
+            <p>I am a software engineer working in different industries.</p>
+            <button class="hire-me-btn">Hire Me</button>
+            <div class="skills">
+                <span class="skill">C++</span>
+                <span class="skill">C</span>
+                <span class="skill">Python</span>
+                <span class="skill">C#</span>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="src/images/profile-image.png" alt="Samet">
+            <div class="experience">
+                <span>Embedded Systems & IoT</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects">
+        <div class="all-projects">
+            <a href="#">Industries</a>
+        </div>
+        <h2>Experience</h2>
+        <div class="projects-list">
+            <div class="project-item">
+                <img src="src/images/exp1.jpg" alt="Project 1">
+                <span class="project-number">IoT</span>
+                <p>Project Content</p>
+            </div>
+            <div class="project-item">
+                <img src="src/images/exp2.webp" alt="Project 2">
+                <span class="project-number">EV</span>
+                <p>Project Content</p>
+            </div>
+            <div class="project-item">
+                <img src="src/images/exp3.jpg" alt="Project 3">
+                <span class="project-number">Satellite</span>
+                <p>Project Content</p>
+            </div>
+            <div class="project-item">
+                <img src="src/images/exp4.jpg" alt="Project 3">
+                <span class="project-number">Aerospace</span>
+                <p>Project Content</p>
+            </div>
+        </div>
+        
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Samet Burhan. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

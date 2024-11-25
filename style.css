@@ -1,0 +1,100 @@
+/* Modern Tarayıcılar için */
+body::-webkit-scrollbar {
+    width: 10px; /* Kaydırma çubuğu genişliği */
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #333; /* Kaydırma çubuğu rengi */
+    border-radius: 5px; /* Yuvarlak köşeler */
+}
+
+body::-webkit-scrollbar-track {
+    background: #121212; /* Arka plan track rengi */
+}
+
+/* Firefox için */
+body {
+    scrollbar-color: #333 #121212;
+    scrollbar-width: thin;
+}
+
+footer {
+    width: 100%; /* Tam genişlik */
+    padding: 10px;
+    font-size: 12px;
+    text-align: left; /* Yatayda ortalar */
+    background-color: #000000;
+    color: #fff;
+}
+
+/* Spline katmanına göre yazıyı konumlandırma */
+.spline-section {
+    position: relative; /* İçindeki elemanları konumlandırmak için */
+    width: 100%;
+    height: 100vh;
+}
+
+/* Spline üzerine eklenen yazıyı kutuya al */
+.spline-text-box {
+    position: absolute; /* Konumlandırmak için */
+    left: 30px;  /* Sol tarafta 20px uzaklık */
+    top: 50%;    /* Ekranın ortasında konumlandır */
+    transform: translateY(-50%);  /* Dikeyde ortalamak için */
+    background-color: rgba(0, 0, 0, 0.1); /* Kutu arka planı */
+    color: white; /* Yazı rengi */
+    padding: 20px; /* Kutu içi boşluk */
+    width: 650px; /* Kutu genişliği */
+    height: 500px;
+    max-width: 90%; /* Genişliğin maksimum yüzde 90 olmasını sağla */
+    font-size: 1.2em; /* Yazı boyutu */
+    z-index: 10;  /* Yazının Spline'ın önünde görünmesini sağlamak için */
+}
+
+/* Kutu içindeki başlık */
+.spline-text-box h1 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+/* Kutu içindeki paragraf */
+.spline-text-box p {
+    font-size: 1.2em;
+    line-height: 1.5;
+}
+
+/* Buton tasarımı ve sabit konumlandırma */
+.spline-button {
+    position: absolute; /* Konumu sabit olacak şekilde */
+    bottom: 20px;  /* Ekranın üst kısmına 20px uzaklık */
+    right: 20px;  /* Ekranın sağ kısmına 20px uzaklık */
+    padding: 15px 50px;
+    font-size: 1.2em;
+    background-color: #030052;  /* Renk ayarını yapın */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 10;  /* Butonun, spline'ın üstünde görünmesini sağlamak için */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Hafif gölge efekti */
+    transition: background-color 0.3s;
+}
+
+/* Butona hover efekti */
+.spline-button:hover {
+    background-color: #500090;  /* Hover'da renk değişimi */
+}
+
+/* Linkin altını ve rengini kaldırın */
+.spline-button a {
+    text-decoration: none; /* Alt çizgiyi kaldırır */
+    color: white; /* Yazı rengini beyaz yapar */
+}
+
+/* GPU hızlandırma için */
+.spline-container iframe {
+    transform: translateZ(0); /* GPU hızlandırma */
+}
+
+span {
+    color: #500090;
+}

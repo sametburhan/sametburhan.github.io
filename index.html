@@ -2,77 +2,256 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
+    <title>Interactive Spline with Scroll</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Varsayılan ayarlar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,body {
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            background-color: black;
+
+            background: radial-gradient(circle at center, #000000, black);
+            transition: background 0.1s ease;
+        }
+
+        /* Navbar stil */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(180, 180, 180, 0.1); /* Cam efekti */
+            backdrop-filter: blur(10px); /* Cam efektini elde etmek için */
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Logo */
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;  /* Logo ve metni yatayda hizalamak için */
+            gap: 10px;  /* Logo ve metin arasına boşluk ekler */
+        }
+        .logo img {
+            width: 40px;  /* İstediğiniz genişlik */
+            height: auto;  /* Yüksekliği orantılı olarak ayarlar */
+        }
+
+        /* Menüler (Linkler) */
+        .navbar .menu {
+            display: flex;
+            gap: 30px;
+        }
+
+        .navbar .menu a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .menu a:hover {
+            color: #A100AC; /* Hover rengi */
+        }
+
+        /* Hamburger Menüsü */
+        .navbar .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .navbar .hamburger div {
+            width: 30px;
+            height: 4px;
+            background-color: white;
+            border-radius: 5px;
+        }
+
+        /* Mobil Menü */
+        @media (max-width: 768px) {
+            .navbar .menu {
+                display: none;
+            }
+            .navbar .hamburger {
+                display: flex;
+            }
+
+            .navbar .menu.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 30px;
+                background: rgba(150, 150, 150, 0.1);
+                backdrop-filter: blur(10px);
+                padding: 15px;
+                border-radius: 10px;
+            }
+
+            .navbar .menu a {
+                font-size: 20px;
+                margin: 10px 0;
+            }
+        }
+
+        /* Spline iframe */
+        .spline-container iframe {
+            width: 100%;
+            height: 100vh;
+            border: none;
+            top: 0;
+            right: 0;
+            pointer-events: auto;
+        }
+
+        /* Diğer sectionlar */
+        .content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        section {
+            min-height: 100vh; /* Her bölüm tam ekran yüksekliğinde */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: rgba(18, 18, 18, 0.7);
+        }
+
+        section:nth-child(even) {
+            background: rgba(1, 0, 28, 0.5);
+        }
+
+        h1, p {
+            max-width: 800px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#portfolio">Experience</a></li>
-                <li><a href="#contact">Cooperation</a></li>
-            </ul>
-            <div class="contact-btn">
-                <a href="https://www.linkedin.com/in/sametburhan" target="_blank" class="contact-link">Contact Me</a>
-            </div>
-        </nav>
-    </header>
+    <script src="script.js"></script>
+    <script>
+        // Fare hareketi dinleyicisi
+        document.body.addEventListener('mousemove', (e) => {
+            const x = e.clientX; // Fare X konumu
+            const y = e.clientY; // Fare Y konumu
+            const width = window.innerWidth;
+            const height = window.innerHeight;
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>My name is <span>Samet</span></h1>
-            <p>I am a software engineer working in different industries.</p>
-            <button class="hire-me-btn">Hire Me</button>
-            <div class="skills">
-                <span class="skill">C++</span>
-                <span class="skill">C</span>
-                <span class="skill">Python</span>
-                <span class="skill">C#</span>
-            </div>
-        </div>
-        <div class="hero-image">
-            <img src="src/images/profile-image.png" alt="Samet">
-            <div class="experience">
-                <span>Embedded Systems & IoT</span>
-            </div>
-        </div>
-    </section>
+            // Yüzdelik pozisyonlar
+            const xPercent = (x / width) * 100;
+            const yPercent = (y / height) * 100;
 
-    <section class="projects">
-        <div class="all-projects">
-            <a href="#">Industries</a>
-        </div>
-        <h2>Experience</h2>
-        <div class="projects-list">
-            <div class="project-item">
-                <img src="src/images/exp1.jpg" alt="Project 1">
-                <span class="project-number">IoT</span>
-                <p>Project Content</p>
-            </div>
-            <div class="project-item">
-                <img src="src/images/exp2.webp" alt="Project 2">
-                <span class="project-number">EV</span>
-                <p>Project Content</p>
-            </div>
-            <div class="project-item">
-                <img src="src/images/exp3.jpg" alt="Project 3">
-                <span class="project-number">Satellite</span>
-                <p>Project Content</p>
-            </div>
-            <div class="project-item">
-                <img src="src/images/exp4.jpg" alt="Project 3">
-                <span class="project-number">Aerospace</span>
-                <p>Project Content</p>
-            </div>
+            // Dinamik gradient arka plan
+            document.body.style.background = `
+                radial-gradient(circle at ${xPercent}% ${yPercent}%, 
+                black, #000000)
+            `;
+        });
+    </script>
+
+
+
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="src\logos\logo.png">Samet
         </div>
         
-    </section>
+        <!-- Menüler -->
+        <div class="menu">
+            <a href="#section1">About Me</a>
+            <a href="#section2">Services</a>
+            <a href="#section3">Contact</a>
+        </div>
 
+        <!-- Hamburger Menü (Mobil için) -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <script>
+        // Hamburger menüsünü toggle etme
+        function toggleMenu() {
+            const menu = document.querySelector('.navbar .menu');
+            menu.classList.toggle('active');
+        }
+    </script>
+
+
+
+
+
+    <!-- İlk Section: Spline -->
+    <div class="spline-section">
+        <!-- Spline iframe -->
+        <div class="spline-container">
+            <iframe data-src="https://my.spline.design/3dconcreteshapecopy-bfb053f2bc7ca2df6391c6f8f6796c9a?t=${Date.now()}"></iframe>
+        </div>
+
+        <!-- Sabit konumda tıklanabilir buton -->
+            <button class="spline-button"><a href="https://www.linkedin.com/in/sametburhan" target="_blank">Contact Me</a>
+            </button>
+
+        <!-- Sol tarafa yazılar ekleme -->
+        <div class="spline-text-box">
+            <h1>My name is <span>Samet</span></h1>
+            <p>I am a software engineer working in different industries.</p>
+        </div>
+    </div>
+    <!-- Diğer İçerikler -->
+    <div class="content">
+        <section id="section1">
+            <div>
+                <h1>About Me</h1>
+                <p>Lorem ipsum...</p>
+            </div>
+        </section>
+
+        <section id="section2">
+            <div>
+                <h1>Services</h1>
+                <p>Lorem ipsum...</p>
+            </div>
+        </section>
+
+        <section id="section3">
+            <div>
+                <h1>Contact</h1>
+                <p>Lorem ipsum...</p>
+            </div>
+        </section>
+    </div>
     <footer>
         <p>&copy; 2024 Samet Burhan. All rights reserved.</p>
     </footer>
-    <script src="script.js"></script>
 </body>
 </html>
