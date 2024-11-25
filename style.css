@@ -69,8 +69,8 @@ footer {
     box-shadow: 0px 0px 300px rgba(101, 54, 197, 0.5);
     margin-top: 50px;
     align-items: center;
-    height: 300px;
-    justify-content: space-between;
+    height: 35%;
+    width: auto;
     border-radius: 500px;
 }
 
