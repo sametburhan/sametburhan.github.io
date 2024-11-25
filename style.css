@@ -22,7 +22,7 @@ footer {
     width: 100%; /* Tam genişlik */
     padding: 10px;
     font-size: 12px;
-    text-align: left; /* Yatayda ortalar */
+    text-align: center; /* Yatayda ortalar */
     background-color: #000000;
     color: #fff;
 }
@@ -39,12 +39,13 @@ footer {
     position: absolute; /* Konumlandırmak için */
     left: 30px;  /* Sol tarafta 20px uzaklık */
     top: 50%;    /* Ekranın ortasında konumlandır */
+    margin-top: 60px;
     transform: translateY(-50%);  /* Dikeyde ortalamak için */
     background-color: rgba(0, 0, 0, 0.1); /* Kutu arka planı */
     color: white; /* Yazı rengi */
     padding: 20px; /* Kutu içi boşluk */
-    width: 650px; /* Kutu genişliği */
-    height: 500px;
+    width: 700px; /* Kutu genişliği */
+    height: 700px;
     max-width: 90%; /* Genişliğin maksimum yüzde 90 olmasını sağla */
     font-size: 1.2em; /* Yazı boyutu */
     z-index: 10;  /* Yazının Spline'ın önünde görünmesini sağlamak için */
@@ -54,12 +55,23 @@ footer {
 .spline-text-box h1 {
     font-size: 1.5em;
     margin-bottom: 10px;
+    margin-top: 50px;
 }
 
 /* Kutu içindeki paragraf */
 .spline-text-box p {
     font-size: 1.2em;
     line-height: 1.5;
+}
+
+.spline-text-box img {
+    display: flex;
+    box-shadow: 0px 0px 300px rgba(101, 54, 197, 0.5);
+    margin-top: 50px;
+    align-items: center;
+    height: 300px;
+    justify-content: space-between;
+    border-radius: 500px;
 }
 
 /* Buton tasarımı ve sabit konumlandırma */
