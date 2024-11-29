@@ -30,11 +30,11 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(180, 180, 180, 0.1); /* Cam efekti */
+            background: rgba(150, 150, 150, 0.1); /* Cam efekti */
             backdrop-filter: blur(10px); /* Cam efektini elde etmek için */
             color: white;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             padding: 15px 30px;
             z-index: 1000;
@@ -45,6 +45,7 @@
         .navbar .logo {
             font-size: 24px;
             font-weight: bold;
+            padding-right: 30px;
             display: flex;
             align-items: center;  /* Logo ve metni yatayda hizalamak için */
             gap: 10px;  /* Logo ve metin arasına boşluk ekler */
@@ -69,7 +70,7 @@
         }
 
         .navbar .menu a:hover {
-            color: #A100AC; /* Hover rengi */
+            color: #835ED0; /* Hover rengi */
         }
 
         /* Hamburger Menüsü */
@@ -143,7 +144,7 @@
         }
 
         section:nth-child(even) {
-            background: rgba(1, 0, 28, 0.5);
+            background: rgba(14, 11, 28, 0.5);
         }
 
         h1, p {
@@ -208,6 +209,13 @@
 
 
 
+    <div id="popup" class="popup">
+      <div class="popup-content">
+        <span class="close-button" onclick="closePopup()">×</span>
+        <h2>Welcome!</h2>
+        <p>This site is still in the development process. Please view on computer for right experience.</p>
+      </div>
+    </div>
 
 
     <!-- İlk Section: Spline -->
@@ -227,6 +235,12 @@
             <img src="src/images/profile-image-color.png" alt="Samet">
             <h1>My name is <span>Samet Burhan</span></h1>
             <p>I am a software engineer working in different industries.</p>
+
+            <div class="buttons">
+                <button>C/C++</button>
+                <button>Python</button>
+                <button>C#</button>
+            </div>
         </div>
     </div>
     <!-- Diğer İçerikler -->
