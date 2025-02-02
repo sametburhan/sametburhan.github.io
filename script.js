@@ -9,3 +9,21 @@ window.onload = function() {
 function closePopup() {
   document.getElementById("popup").classList.remove("show");
 }
+
+// Fare hareketi dinleyicisi
+document.body.addEventListener('mousemove', (e) => {
+  const x = e.clientX; // Fare X konumu
+  const y = e.clientY; // Fare Y konumu
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  // Yüzdelik pozisyonlar
+  const xPercent = (x / width) * 100;
+  const yPercent = (y / height) * 100;
+
+  // Dinamik gradient arka plan
+  document.body.style.background = `
+      radial-gradient(circle at ${xPercent}% ${yPercent}%, 
+      black, #000000)
+  `;
+});

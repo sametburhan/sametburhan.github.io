@@ -1,0 +1,92 @@
+/* Genel Sayfa Stili */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Genel Sayfa Stili */
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #111; /* Siyah arka plan */
+    color: #fff; /* Beyaz yazı rengi */
+    font-family: 'Montserrat', sans-serif; /* Google Fonts'tan gelen yazı tipi */
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: #8a9ba8; /* Hafif gri-mavi link rengi */
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #9346c6; /* Kullanıcının istediği pastel pembe tonu */
+}
+
+/* Ana Konteyner */
+.container {
+    flex: 1;
+    max-width: 80%;
+    margin: 400px ;
+    margin-top: 100px;
+    padding: 0 50px;
+}
+
+/* Navbar Stili */
+.navbar {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #888;
+}
+
+.navbar a {
+    color: #888;
+}
+
+.navbar a:hover {
+    color: #9346c6;
+}
+
+/* Blog Başlık */
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Blog Listesi */
+.blog-list {
+    list-style: none;
+    padding: 0;
+}
+
+.blog-list li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+    font-size: 14px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Yatayda hizalar */
+}
+
+.date {
+    font-size: 14px;
+    color: #666;
+}
+
+footer {
+    font-size: 12px;
+    padding: 2px;
+    text-align: center; /* Yatayda ortalar */
+    background-color: #000000;
+    color: #fff;
+}
