@@ -27,3 +27,14 @@ document.body.addEventListener('mousemove', (e) => {
       black, #000000)
   `;
 });
+
+document.querySelectorAll("*").forEach((el) => {
+  const computedStyle = window.getComputedStyle(el);
+  for (let prop of ["width", "height", "fontSize", "margin", "padding"]) {
+    if (computedStyle[prop].includes("px")) {
+      let pxValue = parseFloat(computedStyle[prop]);
+      let remValue = pxValue / 16; // 16px = 1rem varsayımıyla
+      el.style[prop] = remValue + "rem";
+    }
+  }
+});
