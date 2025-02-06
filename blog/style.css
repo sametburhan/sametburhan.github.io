@@ -48,9 +48,9 @@ a:hover {
 /* Ana Konteyner */
 .container {
     flex: 1;
+    width: 50%;
     max-width: 80%;
-    margin: 400px ;
-    margin-top: 100px;
+    margin: 100px auto;
     padding: 0 50px;
 }
 
@@ -103,11 +103,98 @@ h1 {
     color: #666;
 }
 
+@media (max-width: 992px) {
+    .date {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .date {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .date {
+        font-size: 8px;
+    }
+}
+
 footer {
     font-size: 12px;
     padding: 2px;
     text-align: center; /* Yatayda ortalar */
     background-color: #000000;
-    height: 10vh;
+    height: 60px; /* Fixed height */
     color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 90%;
+        padding: 0 30px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        max-width: 95%;
+        padding: 0 20px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .navbar {
+        font-size: 12px;
+    }
+
+    .blog-list li {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .navbar {
+        font-size: 10px;
+    }
+
+    .blog-list li {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        margin: 20px auto;
+        padding: 0 5px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .navbar {
+        font-size: 8px;
+    }
+
+    .blog-list li {
+        font-size: 8px;
+    }
 }
