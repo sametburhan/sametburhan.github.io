@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAM</title>
+    <!-- Google Fonts Montserrat Ekleniyor -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../src/logos/blog.png" type="image/png">
+</head>
+
+<body>
+    <div class="container">
+
+        <nav class="navbar">
+            <span>@sftwr</span> / <a href="#">Learn</a> / <a href="#">Apply</a> / <a href="#">Repeat</a>
+        </nav>
+        
+        <div class="header">
+            <h1>RAM</h1>
+        </div>
+
+        <ul class="blog-list">
+            <li><span class="date">2025 · 01</span> <a>RAM</a></li>
+            <p>RAM (Random Access Memory), Bu bellek tiplerinde depolanan veriler istenildiği takdirde hızlı ulaşılmaktadır. Bu sebeple romdaki veriler ram üzerine aktarılarak cihazların daha hızlı işlem yapmasını sağlanır.</p>
+            <h3>Statik RAM</h3>
+            <p>Bu tür bellek, verileri depolamak için flip-flop devreleri kullanır. Flip-flop devreleri, verileri depolamak için iki farklı durum arasında geçiş yapabilen elektronik devrelerdir. SRAM, verileri depolamak için bu devreleri kullanır ve verileri kaybetmez, yani verileri sürekli olarak tutabilir.</p>
+            <h3>Dinamik RAM</h3>
+            <p>Bu tür bellek, verileri depolamak için kapasitörler kullanır. Kapasitörler, verileri depolamak için elektriksel enerji depolayan elektronik devrelerdir. DRAM, verileri depolamak için bu devreleri kullanır, ancak verileri kaybetme riski vardır, yani verileri sürekli olarak yenilemek gerekir.</p>
+            <h3>SRAM & DRAM</h3>
+            <table border="1">
+                <tr>
+                  <th>Özellik</th>
+                  <th>SRAM</th>
+                  <th>DRAM</th>
+                </tr>
+                <tr>
+                  <td>Hız</td>
+                  <td>Yüksek</td>
+                  <td>Düşük</td>
+                </tr>
+                <tr>
+                  <td>Güç Tüketimi</td>
+                  <td>Düşük</td>
+                  <td>Yüksek</td>
+                </tr>
+                <tr>
+                  <td>Güvenilirlik</td>
+                  <td>Yüksek</td>
+                  <td>Düşük</td>
+                </tr>
+                <tr>
+                  <td>Maliyet</td>
+                  <td>Yüksek</td>
+                  <td>Düşük</td>
+                </tr>
+                <tr>
+                  <td>Kapasite</td>
+                  <td>Düşük</td>
+                  <td>Yüksek</td>
+                </tr>
+                <tr>
+                  <td>Tasarım</td>
+                  <td>Karmaşık</td>
+                  <td>Basit</td>
+                </tr>
+                <tr>
+                  <td>Veri Depolama</td>
+                  <td>Flip-flop devreleri</td>
+                  <td>Kapasitörler</td>
+                </tr>
+                <tr>
+                  <td>Veri Kaybı Riski</td>
+                  <td>Yok</td>
+                  <td>Var</td>
+                </tr>
+                <tr>
+                  <td>Uygulama</td>
+                  <td>Yüksek performanslı uygulamalar</td>
+                  <td>Geniş kapasiteye sahip uygulamalar</td>
+                </tr>
+              </table>
+              <h3>Stack & Heap</h3>
+              <p>Stack:</p>
+              <p>LIFO (Last In, First Out - Son Giren, İlk Çıkar) prensibine göre çalışan bir bellek alanıdır. Fonksiyon çağrıları ve yerel değişkenler için kullanılır.</p>
+              <p>Fonksiyonlar çağrıldığında, fonksiyonun yerel değişkenleri ve geri dönüş adresi stack'e eklenir. Fonksiyon tamamlandığında, bu veriler stack'ten çıkarılır.</p>
+              <p>Otomatik bellek yönetimi ile çalışır. Bellek, fonksiyon çağrıldığında otomatik olarak ayrılır ve fonksiyon sona erdiğinde otomatik olarak serbest bırakılır.</p>
+              <p>Stack, bellek erişiminde genellikle daha hızlıdır çünkü bellek yönetimi basittir ve sürekli bir bellek alanı kullanır.</p>
+              <p>Stack boyutu genellikle sınırlıdır ve çok derin fonksiyon çağrıları (örneğin, rekürsif fonksiyonlar) stack overflow (yığın taşması) hatasına yol açabilir. Stack konum olarak Ram üzerinde daha yüksek adreste konumlandırılır.</p>
+              <p>Heap:</p>
+              <p>Dinamik bellek yönetimi için kullanılan bir bellek alanıdır. Programın çalışma zamanında bellek tahsis etmek için kullanılır.</p>
+              <p>programın ihtiyaç duyduğu kadar bellek ayırmak için kullanılır. Örneğin, bir dizi veya nesne oluşturmak için heap'ten bellek tahsis edilebilir.</p>
+              <p>Heap'te bellek yönetimi manuel veya otomatik olabilir. Programcı, bellek tahsis etmek için genellikle malloc, calloc, new gibi fonksiyonlar kullanır ve serbest bırakmak için free veya delete kullanır.</p>
+              <p>Stack'e göre daha yavaştır çünkü bellek tahsisi ve serbest bırakma işlemleri daha karmaşıktır ve genellikle daha fazla zaman alır.</p>
+              <p>Heap, genellikle daha büyük bir bellek alanı sunar ve daha fazla veri depolamak için kullanılabilir. Ancak, bellek sızıntıları gibi sorunlar ortaya çıkabilir.</p>
+              <img src="../src/images/heap-stack.jpeg" alt="heap-stack" width="100%">
+              <h3>Diğer Bellek Çeşitleri</h3>
+              <p>ROM: (Sadece okunur bellek) kalıcı bellek tipidir. Sistemi ve verileri depolamak amacıyla kullanılır. Sistemin yeniden başlatılması üzerine silinme gerçekleşmez.</p>
+              <p>PROM: (Programlanabilir salt okunur bellek) Rom ile benzer özelliklere sahiptir ancak silinip yeniden programlanabilir.</p>
+              <p>EPROM: (Silinebilir salt okunur bellek) Rom ile aynı özelliklere sahiptir. Elektriksel olarak silinebilir ve yeniden üzerine yazılabilir.</p> 
+              <p>CACHE: SRAM’lerden oluşmaktadır, işlemci hızlarını belirleyen bellek türüdür. İşlenecek veriler doğrudan bu belleğe aktarılır ve verilerin hızlı işlenmesi sağlanır. En hızlı bellek türüdür ancak cihazın yeniden başlatılması üzerine bütün veriler kaybolur, üzerindeki veriler kalıcı değildir korunamaz. İşlemcilerde L2 ve L3 olarak belirtilir.</p>
+        </ul>
+    </div>
+    <footer>
+        <p>© 2024 Samet Burhan</p>
+    </footer>
+</body>
+</html>

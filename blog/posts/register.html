@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTER</title>
+    <!-- Google Fonts Montserrat Ekleniyor -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../src/logos/blog.png" type="image/png">
+</head>
+
+<body>
+    <div class="container">
+
+        <nav class="navbar">
+            <span>@sftwr</span> / <a href="#">Learn</a> / <a href="#">Apply</a> / <a href="#">Repeat</a>
+        </nav>
+        
+        <div class="header">
+            <h1>REGISTER</h1>
+        </div>
+
+        <ul class="blog-list">
+            <li><span class="date">2025 · 01</span> <a>REGISTER</a></li>
+            <p>Saklayıcı olarak da adlandırılan bu birim, işlemcide verileri depolamak ve o verilere hızlı bir şekilde ulaşabilmek adına kullanılan ufak hafızalardır.</p>
+            <p>ARM mimarisinde genel amaçlı ve özel amaçlı registerlar vardır. Bunlar belirli görevleri yerine getirmek için tasarlanmış ve genellikle işlemcinin performansını artırmak amacıyla kullanılan registerlardır.</p>
+            <h3>Genel Amaçlı Register Tipleri</h3>
+            <p>R0 - R12: Bu registerlar genel amaçlıdır ve programcı tarafından herhangi bir veri saklamak için kullanılabilir. Her biri 32 bit (ARMv7) veya 64 bit (ARMv8) genişliğinde olabilir.</p>
+            <h3>Özel Amaçlı Register Tipleri</h3>
+            <p>Program Counter (PC): İşlemcinin şu anda yürütmekte olduğu komutun adresini tutar. Programın akışını kontrol etmek için kullanılır.</p>
+            <p>Stack Pointer (SP): Yığın (stack) belleğinin en üst adresini gösterir. Fonksiyon çağrıları ve yerel değişkenler için bellek yönetiminde kullanılır.</p>
+            <p>Link Register (LR): Fonksiyon çağrıları sırasında geri dönüş adresini tutar. Bir fonksiyon çağrıldığında, dönüş adresi bu register'a kaydedilir.</p>
+            <p>Current Program Status Register (CPSR): İşlemcinin durumunu ve kontrol bilgilerini tutar. Durum bayrakları (örneğin, taşma, sıfır, negatif) ve işlemci modları hakkında bilgi içerir.</p>
+            <p>Saved Program Status Register (SPSR): Kesme veya istisna durumlarında CPSR'nin bir kopyasını saklar. Bu, işlemci kesme veya istisna işleme döndüğünde önceki durumu geri yüklemek için kullanılır.</p>
+            <p>Banked Registers: ARM mimarisinde bazı registerlar, farklı işlemci modları için bankalanmış olarak bulunur. Örneğin, FIQ (Fast Interrupt Request) modunda özel registerlar bulunur.</p>
+            <img src="../src/images/register-map.jpg" alt="register-map" width="100%">
+        </ul>
+    </div>
+    <footer>
+        <p>© 2024 Samet Burhan</p>
+    </footer>
+</body>
+</html>

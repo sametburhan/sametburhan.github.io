@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RTOS</title>
+    <!-- Google Fonts Montserrat Ekleniyor -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../src/logos/blog.png" type="image/png">
+</head>
+
+<body>
+    <div class="container">
+
+        <nav class="navbar">
+            <span>@sftwr</span> / <a href="#">Learn</a> / <a href="#">Apply</a> / <a href="#">Repeat</a>
+        </nav>
+        
+        <div class="header">
+            <h1>RTOS</h1>
+        </div>
+
+        <ul class="blog-list">
+            <li><span class="date">2025 · 02</span> <a>RTOS</a></li>
+            <p>RTOS, "Real-Time Operating System" (Gerçek Zamanlı İşletim Sistemi) anlamına gelir. RTOS'lar, belirli bir zaman diliminde belirli görevlerin yerine getirilmesi gereken sistemlerde kullanılır. Bu tür işletim sistemleri, zamanlama ve görev yönetimi açısından yüksek hassasiyet ve güvenilirlik sunar.</p>
+            <h3>Semaphore</h3>
+            <p>Semaphore, çoklu iş parçacıkları (thread) veya süreçler (process) arasında senkronizasyon sağlamak için kullanılan bir senkronizasyon aracıdır. Semaphore, belirli bir kaynak veya kaynak grubuna erişimi kontrol etmek için kullanılır ve genellikle bir sayısal değer ile temsil edilir. Bu değer, o an için kaç iş parçacığının veya sürecin kaynağa erişebileceğini gösterir.</p>
+            <h3>Mutex</h3>
+            <p>Mutex, "mutual exclusion" (karşılıklı dışlama) teriminin kısaltmasıdır ve çoklu iş parçacıkları (thread) veya süreçler (process) arasında senkronizasyon sağlamak için kullanılan bir senkronizasyon aracıdır. Mutex, kritik bölgelere (critical section) erişimi kontrol ederek, yalnızca bir iş parçacığının veya sürecin belirli bir kaynağa aynı anda erişmesini sağlar. Bu, veri bütünlüğünü korumak ve yarış koşullarını (race conditions) önlemek için önemlidir.</p>
+            <table border="1">
+                <tr>
+                    <th>Özellik</th>
+                    <th>Semaphore</th>
+                    <th>Mutex</th>
+                </tr>
+                <tr>
+                    <td>Erişim Kontrolü</td>
+                    <td>Birden fazla iş parçacığına izin verir (sayısı belirlenebilir).</td>
+                    <td>Sadece bir iş parçacığına izin verir.</td>
+                </tr>
+                <tr>
+                    <td>Sayı Değeri</td>
+                    <td>Sayı değeri (count) tutar; bu değer, kaynakların sayısını temsil eder.</td>
+                    <td>İki durum (kilitli veya kilitsiz) tutar.</td>
+                </tr>
+                <tr>
+                    <td>Kullanım Amacı</td>
+                    <td>Kaynakların paylaşımını sağlamak ve belirli bir sayıda iş parçacığının aynı anda çalışmasına izin vermek için kullanılır.</td>
+                    <td>Kritik bölgelere erişimi kontrol etmek ve yarış koşullarını önlemek için kullanılır.</td>
+                </tr>
+                <tr>
+                    <td>Performans</td>
+                    <td>Daha fazla esneklik sağlar, ancak daha karmaşık olabilir.</td>
+                    <td>Daha basit ve hızlıdır, ancak yalnızca bir iş parçacığına izin verir.</td>
+                </tr>
+                <tr>
+                    <td>Bekleme Durumu</td>
+                    <td>İş parçacıkları, semaphore değerinin sıfırdan büyük olduğu sürece bekleyebilir.</td>
+                    <td>Bir iş parçacığı, mutex kilitliyse diğer iş parçacıkları bekler.</td>
+                </tr>
+                <tr>
+                    <td>Kullanım Alanları</td>
+                    <td>Üretici-tüketici problemleri, kaynak havuzları gibi durumlarda kullanılır.</td>
+                    <td>Kritik bölge koruma, veri bütünlüğü sağlama gibi durumlarda kullanılır.</td>
+                </tr>
+            </table>
+        </ul>
+    </div>
+    <footer>
+        <p>© 2024 Samet Burhan</p>
+    </footer>
+</body>
+</html>

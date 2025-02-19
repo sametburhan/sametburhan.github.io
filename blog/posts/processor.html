@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROCESSOR</title>
+    <!-- Google Fonts Montserrat Ekleniyor -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../src/logos/blog.png" type="image/png">
+</head>
+
+<body>
+    <div class="container">
+
+        <nav class="navbar">
+            <span>@sftwr</span> / <a href="#">Learn</a> / <a href="#">Apply</a> / <a href="#">Repeat</a>
+        </nav>
+        
+        <div class="header">
+            <h1>PROCESSOR</h1>
+        </div>
+
+        <ul class="blog-list">
+            <li><span class="date">2025 · 01</span> <a>PROCESSOR</a></li>
+            <h3>CISC</h3>
+            <p>CISC mimarisi RISC mimarisine göre daha eskidir. Daha az komut ile daha fazla işlem yapmayı sağlayan bu mimaride arka planda çalıştırılan kod blokları sayesinde bellekte daha az yer kaplayarak daha uzun süren işlemleri gerçekleştirmeyi sağlamıştır. Kod boyutları gereken boyutta veriler depolayarak bellekte daha az yer kaplaması sağlanmıştı. 70 li yıllarda ortaya çıkan bu çözüm çağın gereksinimlerini karşılayabilmekteydi. CISC tasarım kararları adı verilen üç farklı tasarım detayına sahiptir. Bunlar; mikrokod, zengin komut kümesi, yüksek seviyeli komut kümesidir. Bu tasarım kararları sayesinde daha az kod yazarak daha fazla işlem gerçekleştirmek mümkün olur.</p>
+            <h3>RISC</h3>
+            <p>CISC mimarisinden sonra ortaya çıkmış ve daha az kod yazmak için tasarlanmış bir mimaridir. Bu mimaride tek bir komutla farklı işlemler aynı anda gerçekleştirmek yerine, işlemler görev sırasına göre yerine getirilir. Her bir kod 1 clock cycle içerisine gömülerek çalıştırılır böylece komutlar adım adım ilerler. Load komutu ile ana bellekten register belleğe veriler taşınır daha sonra ise çalıştırılan komut sonucu store komutu ile tekrar ana belleğe taşınır.</p>
+            <h3>VONNEUMANN</h3>
+            <p>Von Neumann mimarisi talimatlar ve verileri aynı ram üzerinde tutarak depolar, gerektiği durumda doğrudan işlem birimi ile iletişim kurarak program çalıştırır. Programın kendisi uzun vadeli depolama alanı olarak kullanılan sabit/yığın bellek (mass storage) kısmında saklanır.</p>
+            <h3>HARVARD</h3>
+            <p>Harvard mimarisi veri ve komutların ayrı kanallardan CPU ile haberleştiği mimari olarak tanımlanmaktadır. Neumann ve Harvard mimarileri günümüz teknolojilerinde hala kullanılmaktadır.</p>
+            <p>Bu mimaride veriler ve komutlar farklı bellek adresleme özelliği gösterebilir. Komutlar okunabilir bellekte depolanırken veriler okunabilir-yazılabilir belleklerde depolanır.</p>
+            <h3>ARM & X86</h3>
+            <p>RISC tabanlı bir mimari olan ARM 32 veya 64 bit versiyonlarına sahiptir. Düşük güç tüketimi ve maliyet etken özellikleriyle gömülü sistemlerde tercih edilebilir. X86 mimarisi CISC tabanlıdır ve pek çok karmaşık kod sistemlerini kolaylıkla çalıştırabilmektedirler bu yüzden günümüzde işletim sistemlerinde kullanılabilmektedir. Yüksek güç tüketimine sahip bir mimaridir. Bu sebeple ARM mimarisine kıyasla ağır yığın işlemlerde kullanılabilmektedir.</p>
+            <p>ARM firması tarafından tasarlanan işlemci mimariler farklı şirketlere lisanslanarak üretilir. Gelecekte düşük güç tüketimine sahip bir mimari olduğu için pek çok sistemde tercih edilecek ve böylece bu mimari yaygınlaşacaktır. Güç tüketimi öncelikli olduğundan dolayı yüksek kas gücü gerektirmeyen gömülü sistemlerde çok yaygın olarak tercih edilmektedir. ARM yonga setleri tasarlayarak sadece bir işlemciyi değil işlemci ile birlikte gpu ve bellek yollarını da paket halinde tasarlar böylece System on Chip (SoC) sistemler için verimli bir tasarım ortaya çıkar.</p>
+            <h3>RISC-V</h3>
+            <p>RISC-V, "Reduced Instruction Set Computer" (Azaltılmış Komut Seti Bilgisayarı) mimarisine dayanan açık kaynaklı bir işlemci mimarisidir. Yeni yeni popülerleşen ve üreticilerin arm mimarisinden uzaklaşmak için tercih ettiği RISC-V, basit ve etkili bir komut setine sahip olduğu için, enerji verimliliği ve performans açısından avantajlar sunar.</p>
+            <h3>LITTLE ENDIAN</h3>
+            <p>Endianness, bilgisayar belleğindeki verinin sıralanma şeklidir. Büyük endian ( BE ) ve küçük endian ( LE ) olarak ikiye ayrılır. Veri dizisindeki en az anlamlı biti bellekte en düşük adrese atanır. Ve sonrakiveriler bitlere sırasıyla yerleştirilir. Diğer sıralama türleri orta endian ve karışık endian olarak adlandırılır.</p>
+            <h3>BIG ENDIAN</h3>
+            <p>Big endian sıralama şeklinde ise verinin en önemli biti (MSB) bellekte en düşük adrese atanır. Verilerin geri kalanı, belleğe sırasıyla yerleştirilir. Temelde big endian ile little endian birbirinin zıttı şeklinde veri sıralama yöntemi dışında farkı yoktur. Okuma hızı bağlamı açısından da aynıdır.</p>
+        </ul>
+    </div>
+    <footer>
+        <p>© 2024 Samet Burhan</p>
+    </footer>
+</body>
+</html>
