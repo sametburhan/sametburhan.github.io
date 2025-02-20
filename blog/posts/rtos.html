@@ -39,7 +39,9 @@
             <p>Multiprocessing: Birden fazla bağımsız işlem (process) oluşturulmasıdır. Her işlem, kendi bellek alanına ve kaynaklarına sahiptir ve birbirlerinden bağımsız olarak çalışırlar.</p>
             <h3>Deadlock & Race Condition</h3>
             <p>Deadlock (kilitlenme), çoklu süreçlerin veya iş parçacıklarının birbirlerini beklemesi sonucu oluşan bir durumdur. Bu durumda, hiçbir süreç veya iş parçacığı ilerleyemez çünkü her biri, diğerinin serbest bırakmasını beklemektedir. Deadlock, genellikle kaynakların paylaşımı sırasında ortaya çıkar ve sistemin verimliliğini ciddi şekilde etkileyebilir.</p>
+            <img src="../src/vectors/deadlock.svg" alt="deadlock" width="100%">
             <p>Race condition (yarış durumu), çoklu süreçlerin veya iş parçacıklarının aynı kaynaklara eriştiği ve bu erişimlerin zamanlamasına bağlı olarak beklenmedik veya hatalı sonuçların ortaya çıkabileceği bir durumdur. Yarış durumu, genellikle paylaşılan kaynakların (örneğin, değişkenler, dosyalar veya bellek alanları) eşzamanlı olarak erişilmesi ve güncellenmesi sırasında meydana gelir.</p>
+            <img src="../src/vectors/race.svg" alt="race-condition" width="100%">
             <h3>Semaphore</h3>
             <p>Semaphore, çoklu iş parçacıkları (thread) veya süreçler (process) arasında senkronizasyon sağlamak için kullanılan bir senkronizasyon aracıdır. Semaphore, belirli bir kaynak veya kaynak grubuna erişimi kontrol etmek için kullanılır ve genellikle bir sayısal değer ile temsil edilir. Bu değer, o an için kaç iş parçacığının veya sürecin kaynağa erişebileceğini gösterir.</p>
             <h3>Mutex</h3>
