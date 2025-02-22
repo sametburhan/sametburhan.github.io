@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARM NVIC</title>
+    <!-- Google Fonts Montserrat Ekleniyor -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../src/logos/blog.png" type="image/png">
+</head>
+
+<body>
+    <div class="container">
+
+        <nav class="navbar">
+            <span>@sftwr</span> / <a href="#">Learn</a> / <a href="#">Apply</a> / <a href="#">Repeat</a>
+        </nav>
+        
+        <div class="header">
+            <h1>ARM NVIC</h1>
+            <a href="../blog-home.html" alt="home">
+                <div class="logo-container">
+                    <img src="..\src\logos\back.png" alt="back">
+                </div>
+            </a>
+        </div>
+
+        <ul class="blog-list">
+            <li><span class="date">2025 · 02</span> <a>ARM NVIC</a></li>
+            <p>ARM mimarisinde bulunan özel bir kontrol mekanizması olan NVIC (Nested Vectored Interrupt Controller), Exception ve kesmeleri yönetmek için kullanılmaktadır. Bu durumlar belirli önceliklere sahiptir. Reset exception en yüksek önceliğe sahiptir. Sisteme gelen bir reset isteğinin ardından bütün işlemler durdurulur ve sistem yeniden başlatma durumuna girer. Bazı exception ve interrupt taleplerinin önceliği manuel olarak ayarlanabilmektedir, bu sayede önceliklendirme konfigüre edilebilir.</p>
+            <p>- System Exceptions (Reset, NMI, SVCall, PendSV, SysTick)</p>
+            <p>- Fault Exceptions (Hard Fault, MemManage Fault, UsageFault, BusFault)</p>
+            <p>- Interrupts (IRQ)</p>
+            <h3>System Exceptions</h3>
+            <p>Reset: Software veya hardware olarak alınabilen resetler bu exception üzerinden vektör tablosundaki ilk duruma döner. Reset Handler kaydına bakılarak o adresten priviliged seviyede ve Thread modunda çalışmaya başlar. Vektör tablosunda en yüksek önceliğe sahiptir.</p>
+            <p>NMI (Non Maskable Interrupt): NMI bir çevrebiriminden veya yazılımdan tetiklenebilmektedir. Reset’den sonra en yüksek öncelikli exception’dur. Hil test 3 üzerinden yazılımsal olarak tetiklenerek handler testi gerçekleştirilmektedir. NMI adından da anlaşıldığı üzere maskelenemez ve Reset dışında başka bir exception tarafından kesilemez. Genellikle kritik sistem hataları veya kesintileri ile ilişkilendirilir, bu nedenle önemli durumlarda kullanılır. CPU'nun çalışmasını durduracak bir sıcaklık anormalliği veya güç kaynağı sorunları gibi durumlarda tetiklenir.</p>
+            <p>SVCall (Supervisor Call): SVC komutu ile tetiklenmektedir. İşletim sistemlerinde kullanıcı uygulamalarından çekirdek (kernel) fonksiyonlarına ve cihaz sürücülerine erişmek amacıyla çekirdek seviyesine çağrıda bulunmak için kullanılmaktadır.</p>
+            <p>PendSV (Pendable Service): İşletim sistemlerinde eğer herhangi bir exception aktif durumda değil ise Context Switching işlemi için kullanılmaktadır.</p>
+            <p>SysTick: Sistem zamanlayıcısı tarafından 0'a ulaştığında üretilen exception’dur. Yazılım tarafından da bu exception’u üretmemiz mümkündür. İşletim sistemlerinde işlemci bu exception’u sistem tick’i olarak kullanabilir. Kapatılması öngörülemez hatalara sebebiyet verir.</p>
+            <h3>Fault Exceptions</h3>
+            <p>Mem Fault: Mem Fault, bellek koruma mekanizmalarıyla ilgili olarak ortaya çıkan hatalardır. Bu tür hatalar, bir programın veya işlemin, erişim izni olmayan bir bellek alanına erişmeye çalıştığında meydana gelir. Bellek koruma, sistemin güvenliğini sağlamak ve hatalı veya kötü niyetli kodların bellek alanlarına izinsiz erişimini engellemek için kullanılır.</p>
+            <p>Örnek:</p>
+            <p>- Bir programın, yalnızca okuma izni olan bir bellek alanına yazmaya çalışması.</p>
+            <p>- Geçersiz bir bellek adresine erişim girişimi.</p>
+            <p>Bus Fault: Bus Fault, bellek sisteminde veri yolu (bus) üzerinde veya verilerin yığın (stack) yapısında işlenmesi sırasında meydana gelen hatalardır. Bu hatalar, veri iletiminde veya bellek erişiminde sorunlar yaşandığında ortaya çıkar.</p>
+            <p>Örnek:</p>
+            <p>- Bellek adresinin yanlış olması veya geçersiz bir adres üzerinden veri iletmeye çalışılması.</p>
+            <p>- Yığın belleğinde (stack) bir taşma (overflow) durumu.</p>
+            <p>Usage Fault: Usage Fault, bir komutun gerçekleştirilmesi sırasında ortaya çıkan kullanım hatalarıdır. Bu hatalar, programın beklenmedik bir durumla karşılaştığında veya geçersiz bir komut çalıştırmaya çalıştığında meydana gelir.</p>
+            <p>Örnek:</p>
+            <p>- Tanımlı olmayan bir komutun çalıştırılması (Undefined instruction).</p>
+            <p>- Bellek erişiminde, verilerin hizalanmasıyla ilgili kurallara uyulmaması (Illegal unaligned access).</p>
+            <p>- Komutun geçerli bir duruma girmemesi (invalid state on instruction execution).</p>
+            <p>- Exception dönüşü sırasında hata durumu.</p>
+            <p>Hard Fault: Hard Fault, exception (istisna) ele alma sürecinde meydana gelen hatalardır. Eğer MemManage, BusFault ve UsageFault gibi istisnalar aktif edilmemişse ve bu hatalardan biri çalışma zamanında oluşursa, bu durum Hard Fault tarafından ele alınır. Ayrıca, vektör tablosundan işleyici adresinin alınması (vector fetching) ve debug olaylarıyla ilgili hatalar da Hard Fault oluşturabilir.</p>
+            <p>Örnek:</p>
+            <p>- Bellek yönetimi hatası veya bellek erişim hatası gibi durumların ele alınmaması.</p>
+            <p>- Vektör tablosundan geçersiz bir adresin alınması.</p>
+            <p>- Debugging sırasında beklenmedik bir hata meydana gelmesi.</p>
+            <h3>Interrupts (IRQ)</h3>
+            <p>Interrupt (kesme), bir olayın meydana gelmesi durumunda işlemcinin mevcut görevini durdurarak, öncelikli bir işlemi gerçekleştirmesine olanak tanıyan bir mekanizmadır. Kesme, genellikle donanım bileşenleri (örneğin, bir sensör, buton veya zamanlayıcı) tarafından tetiklenir ve işlemcinin dikkatini çekmek için kullanılır.</p>
+            <p>Kesmeler çevre birimleri veya yazılım tarafından üretilmektedir. Çevre birimleri işlemci ile konuşmak için kesmeleri kullanmaktadır.</p>
+            <h3>Vector Table</h3>
+            <p>Vektör tablosu Stack Pointer’in reset değerini ve bütün exceptionların servis edilmesi (exception service) için işleyicilerin (handler) başlangıç adresini tutan bir tablodur. Exception işleyicileri C fonksiyonu olarak yazılabilmektedir ve doğal olarak biz de bu tabloya exception servis edildiğinde çağrılması için bu fonksiyonların adreslerini girmekteyiz. Sistem reseti sonrasında vektör tablosu varsayılan olarak 0x00000000 adresinde yer almaktadır. Vektör tablosu daha sonrasında istenildiği takdirde yazılım tarafından VTOR (Vector Table Offset Register) register’ı kullanılarak başka bir adrese yerleştirilebilmektedir.</p>
+            <p>Vektör tablosundaki ilk vektör Stack Pointer (SP)’in başlangıç değerini tutar. Yani işlemci reset aldıktan sonra ilk olarak PC (Program Counter) register değerine 0x00000000 adresi yüklenir ve daha sonra bu adresteki değer de stack işaretçisine yüklenir. Genellikle bu ayarlamalar startup kodu ile yapılmaktadır. Startup kodu derleyiciye göre değişse de genel çerçevesi ve teorisi aynıdır.</p>
+            <p>Stack işaretçisi ayarlandıktan sonra Reset vektörü olarak belirtilen işleyici (Reset Handler) çağrılır. Reset işleyicisi içerisinde sistem ilklendirmesi yapılır ve daha sonrasında main fonksiyonu çağrılır. Bu aşamadan sonra program akışı main fonksiyonu içerisinde gerçekleşmektedir.</p>
+            <img src="../src/images/irq.png" alt="irq" width="100%">
+        </ul>
+    </div>
+    <footer>
+        <p>© 2024 Samet Burhan</p>
+    </footer>
+</body>
+</html>
