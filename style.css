@@ -180,6 +180,7 @@ footer {
 .spline-section {
     position: relative; /* İçindeki elemanları konumlandırmak için */
     width: 100%;
+    background-color: black;
     height: 90vh;
 }
 
@@ -188,27 +189,30 @@ footer {
     position: absolute; /* Konumlandırmak için */
     left: 1.875rem;  /* Sol tarafta 1.875rem uzaklık */
     top: 50%;    /* Ekranın ortasında konumlandır */
-    margin-top: 3.75rem;
     transform: translateY(-50%);  /* Dikeyde ortalamak için */
-    background-color: rgba(0, 0, 0, 0.1); /* Kutu arka planı */
     color: white; /* Yazı rengi */
     padding: 1.25rem; /* Kutu içi boşluk */
-    width: 43.75rem; /* Kutu genişliği */
-    height: 43.75rem;
-    max-width: 90%; /* Genişliğin maksimum yüzde 90 olmasını sağla */
+    width: 45%; /* Kutu genişliği */
+    height: 100%;
+    max-width: 80%; /* Genişliğin maksimum yüzde 90 olmasını sağla */
     font-size: 1.2em; /* Yazı boyutu */
-    z-index: 10;  /* Yazının Spline'ın önünde görünmesini sağlamak için */
+    z-index: 10;
+    pointer-events: auto; /* Pointer olaylarını etkinleştir */
 }
 
 @media (max-width: 48rem) {
     .spline-text-box {
-        top: 40%;    /* Ekranın ortasında konumlandır */
+        position: flex;
+        top: 40%;
         margin-top: 3.75rem;
         display: flex;
+        left: 0px;
+        background-color: rgba(0, 0, 0, 0.1); /* Kutu arka planı */
         flex-direction: column;
         align-items: center;
+        text-align: center;
+        max-width: 100%;
         width: 100%; /* Küçük ekranlarda genişliği yüzde 90 yap */
-        height: 100%; /* Yüksekliği içeriğe göre ayarla */
         padding: 2rem; /* Küçük ekranlarda iç boşluğu azalt */
         font-size: 1em; /* Yazı boyutunu küçült */
         backdrop-filter: blur(0.625rem); /* Arka plan bulanıklığı */
@@ -239,7 +243,7 @@ footer {
 
 @media (max-width: 48rem) {
     .spline-text-box img {
-        height: 40%;
+        height: 30%;
         width: auto;
         margin-top: 1.875rem;
     }
@@ -304,6 +308,14 @@ footer {
     transition: all 0.3s ease; /* Hover animasyonu için */
 }
 
+@media (max-width: 48rem) {
+    .spline-text-box .buttons button {
+        width: 100%; /* Küçük ekranlarda tam genişlik */
+        font-size: 1rem; /* Yazı boyutunu küçült */
+        padding: 0.75rem 1.5rem; /* İç boşlukları azalt */
+    }
+}
+
 /* Hover durumunda */
 .spline-text-box .buttons button:hover {
     background-color: #835ED0; /* Hover ile iç renk mor olur */
@@ -333,7 +345,7 @@ span {
 @media (max-width: 48rem) {
     .about-section {
         height: auto;
-        margin-top: 2.5rem;
+        margin-top: 3rem;
         width: 90%;
         padding: 0.9375rem;
         box-shadow: 0px 0px 9.375rem #2d1d9720;
@@ -341,7 +353,7 @@ span {
 }
 
 .skill {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
 }
 
 .skill-title {
@@ -403,7 +415,13 @@ mark-b {
         width: 90%;
         padding: 1rem;
         font-size: 1rem;
-        gap: 1.5rem;
+        gap: 1.2rem;
+    }
+    .description {
+        font-size: 1rem;
+    }
+    .skill-title {
+        font-size: 1rem;
     }
 }
 
@@ -478,6 +496,16 @@ mark-b {
     color: #ffffff;
     transition: opacity 0.5s ease;
     opacity: 1;
+}
+
+@media (max-width: 48rem) {
+    .title-text {
+        font-size: 0.8rem;
+        height: auto;
+    }
+    .content-text {
+        font-size: 1rem;
+    }
 }
 
 /* Hover Efekti */
@@ -683,7 +711,7 @@ canvas {
 
 @media (max-width: 48rem) {
     .email-container {
-        width: 60%;
+        width: 80%;
         padding: 0.625rem;
         flex-direction: row;
         gap: 0.3125rem;

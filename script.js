@@ -49,3 +49,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
   animateStars(); // Animasyonu başlat
 });
+
+/* JavaScript to close the menu when clicking outside */
+document.addEventListener('click', function(event) {
+  const menu = document.querySelector('.navbar .menu');
+  const hamburger = document.querySelector('.navbar .hamburger');
+  if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+      menu.classList.remove('active');
+  }
+});
