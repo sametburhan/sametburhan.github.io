@@ -16,6 +16,14 @@ body {
     scrollbar-width: thin;
 }
 
+.code-box {
+    background-color: #000000;
+    color: #9c9c9c;
+    padding: 0 3rem 0 3rem;
+    overflow-x: auto;
+}
+
+
 /* Modern Tarayıcılar için */
 body::-webkit-scrollbar {
     width: 10px;

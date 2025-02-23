@@ -223,8 +223,8 @@ footer {
 @media (max-width: 48rem) {
     .spline-text-box {
         position: flex;
+        margin-top: 3rem;
         top: 40%;
-        margin-top: 3.75rem;
         display: flex;
         left: 0px;
         background-color: rgba(0, 0, 0, 0.1); /* Kutu arka planı */
@@ -263,7 +263,7 @@ footer {
 
 @media (max-width: 48rem) {
     .spline-text-box img {
-        height: 30%;
+        height: 25%;
         width: auto;
         margin-top: 1.875rem;
     }
@@ -746,8 +746,8 @@ canvas {
     }
 
     .email-icon img {
-        width: 0.875rem;
-        height: 0.875rem;
+        width: 1rem;
+        height: 1rem;
     }
 
     .email-text {

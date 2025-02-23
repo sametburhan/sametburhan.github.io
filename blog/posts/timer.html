@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIMER</title>
+    <!-- Google Fonts Montserrat Ekleniyor -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../src/logos/blog.png" type="image/png">
+</head>
+
+<body>
+    <div class="container">
+
+        <nav class="navbar">
+            <span>@sftwr</span> / <a href="#">Learn</a> / <a href="#">Apply</a> / <a href="#">Repeat</a>
+        </nav>
+        
+        <div class="header">
+            <h1>TIMER</h1>
+            <a href="../blog-home.html" alt="home">
+                <div class="logo-container">
+                    <img src="..\src\logos\back.png" alt="back">
+                </div>
+            </a>
+        </div>
+
+        <ul class="blog-list">
+            <li><span class="date">2025 · 02</span> <a>TIMER</a></li>
+            <p>Timer'lar, belirli bir süre boyunca beklemek veya belirli aralıklarla görevleri gerçekleştirmek için kullanılır. Örneğin, bir sensörden veri okumak için her 1 saniyede bir tetikleme yapabilir.</p>
+            <p>Zamanlayıcılar, bir olayın gerçekleşmesi için gereken süreyi takip edebilir. Örneğin, bir butona basıldığında bir zamanlayıcı başlatılabilir ve bu bir süre içinde başka bir işlem yapılması gerekebilir.</p>
+            <p>Timer'lar, bir zaman diliminde kesme sinyalleri üreterek işlemcinin başka görevleri yerine getirmesine olanak tanır. Bu, çoklu görev yönetimi için önemlidir. Bunların yanı sıra motor hız kontrolü için veya RGB LED renklerini ayarlamak için kullanılan PWM sinyalleri üretmek amacıyla kullanılabilir.</p>
+            <p>Gömülü sistemlerde gerçek zamanlı uygulamalar (RTOS) için zamanlayıcılar kritik öneme sahiptir. Zamanlayıcılar, sistemin belirli bir zaman diliminde görevleri yerine getirmesini sağlar.</p>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Özellik</th>
+                        <th>Timer (Zamanlayıcı)</th>
+                        <th>Counter (Sayıcı)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Artış Mekanizması</td>
+                        <td>Her makine döngüsü için kayıt artırılır.</td>
+                        <td>Dış bir giriş pinindeki 1'den 0'a (Falling Edge) geçişe göre kayıt artırılır.</td>
+                    </tr>
+                    <tr>
+                        <td>Maksimum Sayım Hızı</td>
+                        <td>Osilatör frekansının 1/12'si kadar maksimum sayım hızı.</td>
+                        <td>Osilatör frekansının 1/24'ü kadar maksimum sayım hızı.</td>
+                    </tr>
+                    <tr>
+                        <td>Kullanım Amacı</td>
+                        <td>İç saat frekansını kullanarak gecikme üretir.</td>
+                        <td>Dış sinyalleri saymak için kullanılır.</td>
+                    </tr>
+                    <tr>
+                        <td>Giriş</td>
+                        <td>İç saat sinyalini kullanır.</td>
+                        <td>Dış bir sinyalin darbelerini sayar.</td>
+                    </tr>
+                    <tr>
+                        <td>Çıkış</td>
+                        <td>Belirli bir süre dolduğunda bir kesme veya sinyal üretir.</td>
+                        <td>Belirli bir sayıya ulaştığında bir kesme veya sinyal üretir.</td>
+                    </tr>
+                    <tr>
+                        <td>Örnek Uygulamalar</td>
+                        <td>Motor hız kontrolü, zamanlayıcı görevleri, gecikme uygulamaları.</td>
+                        <td>Buton basma sayımı, frekans ölçümü, olay sayımı.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>Oscillator</h3>
+            <p>Belirli bir frekansta düzenli bir elektrik sinyali üreten bir devre veya cihazdır. Gömülü sistemlerde kullanılan osilatörler kristal osilatör olarak adlandırılmaktadır ve iki çeşittir.</p>
+            <p>- Internal Oscillator: Dahili sinyal üretici devreler olan düşük doğrulukta ve frekansta kare sinyal üretemi yapan dahili osilatörler. Genellikle daha düşük maliyetli ve daha az alan kaplayan çözümlerdir.</p>
+            <p>- Extermal Oscillator: Yüksek doğrulukta ve frekansta kare sinyal üretemi yapan harici osilatörler. Harici osilatörler daha kararlı sinyal üretimine sahip olduğundan dolayı tercih edilmektedir.</p>
+            <img src="../src/images/osc.jpg" alt="osc" width="100%">
+            <h3>PLL (Phase Locked Loop)</h3>
+            <p>PLL (Phase-Locked Loop), bir kontrol sistemidir ve çıkış sinyalinin fazını bir giriş sinyalinin fazına sabitler. Giriş ve çıkış fazlarının senkronize tutulması, aynı zamanda giriş ve çıkış frekanslarının da eşit olmasını sağlar; bu nedenle, bir PLL, giriş frekansını takip edebilir. Ayrıca, bir frekans bölücü eklenerek, PLL, giriş frekansının katı olan kararlı bir frekans üretebilir.</p>
+            <p>Geliştirme kartlarında, osilatörden üretilen sinyali çeşitli çevre birimlere veya pinlere aktarmak amacıyla kullanılmaktadır. Bu esnada sinyalin frekansını değiştirerek CPU, Peripheral ve PWM gibi birimlere yönlendirir.</p>
+        </ul>
+    </div>
+    <footer>
+        <p>© 2024 Samet Burhan</p>
+    </footer>
+</body>
+</html>
