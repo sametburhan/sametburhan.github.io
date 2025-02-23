@@ -41,9 +41,8 @@ html, body {
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(150, 150, 150, 0.1); /* Cam efekti */
+    background: rgba(0, 0, 0, 0.1); /* Cam efekti */
     backdrop-filter: blur(0.625rem); /* Cam efektini elde etmek için */
-    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -87,6 +86,12 @@ html, body {
     border-radius: 0.3125rem;
 }
 
+.navbar .logo {
+    position: absolute;
+    margin-right: auto;
+    opacity: 0;
+}
+
 /* Mobil Menü */
 @media (max-width: 48rem) {
     .navbar .menu {
@@ -111,6 +116,15 @@ html, body {
     .navbar .menu a {
         font-size: 1.25rem;
         margin: 0.625rem 0;
+    }
+
+    .navbar .logo {
+        display: flex;
+        opacity: 1;
+        height: 2.1rem;
+        width: 2.1rem;
+        align-items: center;
+        left: 1.5rem;
     }
 }
 
@@ -641,16 +655,18 @@ canvas {
 
 .email-container {
     display: flex;
-    width: 25vw;
+    width: fit-content;
     align-items: center;
     justify-content: center;
     gap: 0.625rem;
     background: rgba(255, 255, 255, 0.1);
-    padding: 0.625rem 1.25rem;
+    padding: 0.625rem 1rem;
     border-radius: 3.125rem;
     transition: 0.3s ease-in-out;
     z-index: 100;
     flex-direction: row;
+    justify-content: space-around;
+    
 }
 
 .email-container:hover {
@@ -658,18 +674,18 @@ canvas {
 }
 
 .email-icon {
-    width: 1.875rem;
-    height: 1.875rem;
+    width: 1.5rem;
+    height: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: white;
     border-radius: 50%;
 }
 
 .email-icon img {
-    width: 1.125rem;
-    height: 1.125rem;
+    width: 1.3rem;
+    height: 1.3rem;
+    border-radius: 50%;
 }
 
 .email-text {
@@ -711,10 +727,11 @@ canvas {
 
 @media (max-width: 48rem) {
     .email-container {
-        width: 80%;
+        width: fit-content;
         padding: 0.625rem;
         flex-direction: row;
         gap: 0.3125rem;
+        justify-content: center;
     }
 
     .email-icon {
