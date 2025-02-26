@@ -1,7 +1,57 @@
-Sensör: Gerçek dünyayı örnekleyerek her türlü veriyi alan ve bu fiziksel dünyayı dijitale aktarmayı sağlayan elektronik devrelerdir.
+<!DOCTYPE html>
 
-AD converter: Analog sinyali dijital sinyale dönüştüren dönüştürücü.
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONVERTER</title>
+    <!-- Google Fonts Montserrat Ekleniyor -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../src/logos/blog.png" type="image/png">
+</head>
 
-DA conventer: Dijital sinyalleri analog sinyale dönüştüren dönüştürücü.
+<body>
+    <div class="container">
 
-Aktüatör: Bir doğrulayıcıdır. DA dönüştürücü tarafından sağlanan veriyi kontrol ederek saklar.
+        <nav class="navbar">
+            <span>@sftwr</span> / <a href="#">Learn</a> / <a href="#">Apply</a> / <a href="#">Repeat</a>
+        </nav>
+        
+        <div class="header">
+            <h1>CONVERTER</h1>
+            <a href="../blog-home.html" alt="home">
+              <div class="logo-container">
+                  <img src="..\src\logos\back.png" alt="back">
+              </div>
+          </a>
+        </div>
+
+        <ul class="blog-list">
+            <li><span class="date">2025 · 01</span> <a>CONVERTER</a></li>
+            <p>Sensör: Sensör, fiziksel bir olayı veya durumu algılayarak bunu elektriksel bir sinyale dönüştüren bir cihazdır. Sensörler, sıcaklık, basınç, ışık, nem, hareket gibi çeşitli fiziksel büyüklükleri ölçmek için kullanılır.MEMS, "Micro-Electro-Mechanical Systems" (Mikro Elektrik Mekanik Sistemler) ifadesinin kısaltmasıdır.</p>
+            <p>MEMS: Hem mekanik hem de elektrik bileşenlerini içeren, genellikle mikrometre ölçeğinde üretilen sistemlerdir. Gerçek dünyayı örnekleyerek her türlü veriyi alan ve bu fiziksel dünyayı dijitale aktarmayı sağlayan sensör parçalarıdır.</p>
+            <p>Aktüatör: Aktüatör, bir sistemdeki mekanik hareketi başlatmak veya kontrol etmek için kullanılan bir cihazdır. Genellikle elektrik, hidrolik veya pnömatik enerji kullanarak çalışır. Aktüatörler, belirli bir komut veya sinyal aldıklarında, fiziksel bir hareket veya değişiklik oluştururlar. Örneğin step motor bir aktüatördür.</p>
+            <h3>ADC</h3>
+            <p>ADC: Gerçek dünyadan ölçtüğümüz verileri dijital sistemlere aktarmak için, dijital sistemlerin algılayabileceği ayrık (Discrete) sinyallere dönüştürmemiz gerekir ve bunun için Analog to Digital converter kullanırız. Analog sinyali örnekleyerek dijital sinyale dönüştürür.</p>
+            <p>Örnekleyici (Sampler): Analog sinyali belirli zaman aralıklarında örnekleyen bir bileşendir. Örnekleme işlemi, sürekli bir analog sinyalin belirli noktalarda alınarak dijital forma dönüştürülmesini sağlar. Farklı çözünürlüklerde örnekleme alınabilmektedir, 10 veya 12 bitlik bir ADC arasındaki fark bir sinyalden alabilecekleri topmlam değer şeklinde ifade edilebilir. 10 bitlik bir ADC, 2^10 (1024) farklı dijital değeri temsil edebilirken, 12 bitlik bir ADC aynı sinyalden 2^12 (4096) farklı dijital değeri temsil edebilir bu durum voltaj hassasiyetini doğrudan etkiler (Yaklaşık 4 kat).</p>
+            <p>Tutucu (Sample and Hold Circuit): Örnekleme işlemi sırasında alınan analog sinyalin değerini belirli bir süre boyunca sabit tutar. Bu, ADC'nin analog sinyali dijital forma dönüştürmeden önce stabil bir değer elde etmesini sağlar.</p>
+            <p>Karşılaştırıcı (Comparator): Analog sinyal ile referans voltajını karşılaştıran bir bileşendir. Bu, dijital değerin belirlenmesi için gereklidir. Karşılaştırıcı, sinyalin hangi dijital değere karşılık geldiğini belirler.</p>
+            <p>Dijital Kayıt (Register): ADC'nin dijital çıktısını saklamak için kullanılır. Her bitin belirlenmesi sırasında güncellenir ve nihai dijital değeri tutar.</p>
+            <p>Referans Voltajı (Reference Voltage): ADC'nin çalışması için gerekli olan bir referans voltajı sağlar. Bu voltaj, analog sinyalin dijital karşılığını belirlemek için karşılaştırma işlemlerinde kullanılır.</p>
+            <p>Kontrol Birimi (Control Logic): ADC'nin çalışma sürecini yöneten birimdir. Örnekleme, tutma, karşılaştırma ve dijital çıkışın güncellenmesi gibi işlemleri koordine eder.</p>
+            <p>Çıkış Arayüzü (Output Interface): Dijital sinyalin dış dünyaya iletilmesini sağlayan bir bileşendir. Bu, genellikle bir veri yolu veya seri iletişim arayüzü şeklinde olabilir.</p>
+            <img src="../src/images/saradc.png" alt="SAR-ADC" width="100%">
+            <p>- Sıralı Yaklaşım (Successive Approximation) ADC: Bu tür ADC'ler, analog sinyali dijital forma dönüştürmek için bir karşılaştırıcı ve bir kayıtçı kullanır. Her bir bit, sırasıyla belirlenir ve bu süreç, analog sinyalin dijital karşılığını bulana kadar devam eder. Avantajları: Hızlı ve orta düzeyde hassasiyet sunar.</p>
+            <p>- Delta-Sigma (ΔΣ) ADC: Bu ADC türü, yüksek çözünürlük ve hassasiyet sağlamak için oversampling (aşırı örnekleme) ve gürültü şekillendirme tekniklerini kullanır. Genellikle ses ve ölçüm uygulamalarında tercih edilir. Avantajları: Yüksek çözünürlük ve düşük gürültü seviyesi.</p>
+            <img src="../src/images/sdadc.png" alt="SDADC" width="100%">
+            <h3>DAC</h3>
+            <p>DAC: Dijital sistemlerde işlenen verileri gerçek dünyadaki analog sinyallere dönüştürmek için kullanılır. Dijital sinyalleri alarak, bu sinyalleri sürekli (Continuous) bir analog sinyale dönüştürür. Bu süreç, dijital verilerin belirli bir zaman diliminde örneklenmesi ve ardından bu örneklerin analog bir sinyal olarak yeniden oluşturulması ile gerçekleştirilir. Bu sayede dijital ortamda üretmiş olduğumuz verileri gerçek dünyaya taşıyabilmekteyiz.</p>
+        </ul>
+    </div>
+    <footer>
+        <p>© 2024 Samet Burhan</p>
+    </footer>
+</body>
+</html>
+

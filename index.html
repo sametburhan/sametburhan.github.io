@@ -5,73 +5,48 @@
     <meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
     <link rel="icon" href="src/logos/logo.png" type="image/png">
     <title>Samet Burhan Portfolio</title>
+    <meta name="description" content="Samet Burhan's portfolio showcasing skills in Software Engineering, Embedded Systems, IoT, Robotics and more.">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <script src="script.js"></script>
-    <!-- Navbar -->
     <div class="navbar">        
-        <!-- Menüler -->
         <div class="menu">
             <a href="#section1">About Me</a>
             <a href="#section2">Services</a>
             <a href="#section3">Contact</a>
             <a href="blog/blog-home.html">Blog</a>
         </div>
-
         <div class="logo">
             <img src="src/logos/logo.png" alt="Logo" height="100%" width="100%">
         </div>
-
-        <!-- Hamburger Menü (Mobil için) -->
         <div class="hamburger" onclick="toggleMenu()">
             <div></div>
             <div></div>
             <div></div>
         </div>
     </div>
-
     <script>
-        // Hamburger menüsünü toggle etme
         function toggleMenu() {
             const menu = document.querySelector('.navbar .menu');
             menu.classList.toggle('active');
         }
     </script>
-
-    <!-- <div id="popup" class="popup">
-      <div class="popup-content">
-        <span class="close-button" onclick="closePopup()">×</span>
-        <h2>Welcome!</h2>
-        <p>This site is still in the development process. Please view on computer for right experience.</p>
-      </div>
-    </div> -->
-
-
-    <!-- Boşluk oluşturma -->
     <div style="height: 10%;"></div>
-
-    <!-- İlk Section: Spline -->
     <div class="spline-section">
-        <!-- Spline iframe -->
         <div class="spline-container">
             <iframe src="https://my.spline.design/robotfollowcursorforlandingpage-9343f4315619269896557426f9461637"></iframe>
         </div>
-
-        <!-- Sabit konumda tıklanabilir buton -->
         <button class="spline-button">
             <a href="https://www.linkedin.com/in/sametburhan" target="_blank" >
                 <span style="display: inline-block; vertical-align: middle; line-height: normal; color: white;">Contact Me</span>
                 <img src="src/vectors/linkedin.svg" alt="LinkedIn Logo" style="width: 20px; vertical-align: middle;">
             </a>
         </button>
-
-        <!-- Sol tarafa yazılar ekleme -->
         <div class="spline-text-box">
             <img src="src/images/profile-image-color.png" alt="Samet">
             <h1>My name is <span>Samet Burhan</span></h1>
             <p>I am a software engineer working in different industries.</p>
-
             <div class="buttons">
                 <button>C/C++</button>
                 <button>Python</button>
@@ -79,7 +54,6 @@
             </div>
         </div>
     </div>
-    <!-- Diğer İçerikler -->
     <div class="content">
         <section id="section1">
             <div class="about-section">
@@ -89,28 +63,24 @@
                         <div class="progress designing"></div>
                     </div>
                 </div>
-                
                 <div class="skill">
                     <div class="skill-title">Coding</div>
                     <div class="progress-bar">
                         <div class="progress coding"></div>
                     </div>
                 </div>
-        
                 <div class="skill">
                     <div class="skill-title">Simulating</div>
                     <div class="progress-bar">
                         <div class="progress simulating"></div>
                     </div>
                 </div>
-        
                 <div class="skill">
                     <div class="skill-title">Testing</div>
                     <div class="progress-bar">
                         <div class="progress testing"></div>
                     </div>
                 </div>
-        
                 <div class="description">
                     I create innovative solutions at the intersection of hardware and software. With my interest in technology and my desire to constantly learn.
                 </div>
@@ -120,14 +90,13 @@
                 <h1> I take part in <mark-b>Smart Systems</mark-b> and <mark-b>Robotics</mark-b> projects.</h1>
             </div>
         </section>
-
         <section id="section2">
             <div class="services-section">
                 <div class="image-box">
                     <img src="src/images/image1.jpg" alt="Aviation">
                     <div class="overlay">
                         <div class="title-text"><h1>Aviation</h1></div>
-                        <div class="content-text">Low-code communication development and optimization at aviation standards.</div>
+                        <div class="content-text">Low-level programming communication development and optimization at aviation standards.</div>
                     </div>
                 </div>
                 <div class="image-box">
@@ -153,7 +122,6 @@
                 </div>
             </div>
         </section>
-        
         <section id="section3">
             <div class="space-bg">
                 <div id="star-container">
@@ -175,10 +143,8 @@
                     <canvas id="starCanvas"></canvas>
                 </div>
             </div>
-            
         </section>
     </div>
-    
     <footer>&copy; 2024 Samet Burhan. All rights reserved.</footer>
 </body>
 </html>
