@@ -518,6 +518,7 @@ class YouTubeManager {
   constructor() {
     this.videoId = null;
     this.isPlaying = false;
+    this.isLooping = JSON.parse(localStorage.getItem('ff-yt-loop') ?? 'true');
     this.volume = 80;
     this.favorites = JSON.parse(localStorage.getItem('ff-yt-favs') || '[]');
     this.currentMeta = null;
@@ -528,12 +529,48 @@ class YouTubeManager {
     window.addEventListener('message', e => {
       try {
         const msg = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
-        if (msg && msg.event === 'onStateChange') {
-          this.isPlaying = (msg.info === 1); // 1 = playing, 2 = paused
+        if (!msg) return;
+
+        let state = null;
+        if (msg.event === 'infoDelivery' && msg.info && typeof msg.info.playerState !== 'undefined') {
+          state = msg.info.playerState;
+        } else if (msg.event === 'onStateChange') {
+          state = typeof msg.info === 'number' ? msg.info : msg.info?.playerState;
+        } else if (msg.event === 'initialDelivery' && msg.info && typeof msg.info.playerState !== 'undefined') {
+          state = msg.info.playerState;
+        }
+
+        if (state !== null && state !== undefined) {
+          if (state === 1) {
+            this.isPlaying = true;
+          } else if (state === 0) {
+            // Video ended: seamlessly replay from beginning if looping is enabled
+            if (this.isLooping) {
+              this.isPlaying = true;
+              this._sendCmd('seekTo', [0, true]);
+              this._sendCmd('playVideo');
+            } else {
+              this.isPlaying = false;
+            }
+          } else if (state === 2 || state === -1 || state === 5) {
+            this.isPlaying = false;
+          }
           this._syncUI();
         }
       } catch (_) { }
     });
+
+    const iframe = document.getElementById('yt-player-iframe');
+    if (iframe) {
+      iframe.addEventListener('load', () => {
+        try {
+          iframe.contentWindow?.postMessage(JSON.stringify({ event: 'listening' }), '*');
+          if (this.isLooping) {
+            this._sendCmd('setLoop', [true]);
+          }
+        } catch (_) { }
+      });
+    }
   }
 
   _sendCmd(func, args = []) {
@@ -566,7 +603,8 @@ class YouTubeManager {
 
     const iframe = document.getElementById('yt-player-iframe');
     if (iframe) {
-      iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&enablejsapi=1&playsinline=1&rel=0&iv_load_policy=3`;
+      const loopParam = this.isLooping ? `&loop=1&playlist=${id}` : '';
+      iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&enablejsapi=1&playsinline=1&rel=0&iv_load_policy=3${loopParam}`;
       this.isPlaying = true;
       this._syncUI();
     }
@@ -588,6 +626,24 @@ class YouTubeManager {
     this.volume = v;
     this._sendCmd('setVolume', [v]);
     this._sendCmd('unMute');
+  }
+
+  toggleLoop() {
+    this.isLooping = !this.isLooping;
+    localStorage.setItem('ff-yt-loop', JSON.stringify(this.isLooping));
+    this.syncLoopButton();
+    this._sendCmd('setLoop', [this.isLooping]);
+    return this.isLooping;
+  }
+
+  syncLoopButton() {
+    const loopBtn = document.getElementById('yt-np-loop-btn');
+    if (loopBtn) {
+      loopBtn.classList.toggle('active', this.isLooping);
+      loopBtn.title = this.isLooping
+        ? 'Döngü Modu (Açık — Sürekli Tekrarla)'
+        : 'Döngü Modu (Kapalı)';
+    }
   }
 
   async _fetchMeta(id) {
@@ -613,6 +669,7 @@ class YouTubeManager {
     }
 
     this.syncFavButton();
+    this.syncLoopButton();
     this._syncUI();
   }
 
@@ -626,6 +683,7 @@ class YouTubeManager {
 
   _showCard() {
     document.getElementById('yt-now-playing')?.classList.remove('hidden');
+    this.syncLoopButton();
   }
 
   _syncUI() {
@@ -651,10 +709,12 @@ class YouTubeManager {
     if (bnp) {
       if (this.videoId && this.isPlaying) {
         bnp.classList.remove('hidden');
+        bnp.classList.remove('paused');
         if (bnpTitle) bnpTitle.textContent = this.currentMeta?.title || 'YouTube Müzik';
         if (bnpArtist) bnpArtist.textContent = this.currentMeta?.channel || 'YouTube';
         bnp.title = `${this.currentMeta?.title || 'Müzik'} — Oynatılıyor (Aç/Kapat)`;
       } else {
+        bnp.classList.add('paused');
         bnp.classList.add('hidden');
       }
     }
@@ -1486,6 +1546,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const ytResults = document.getElementById('yt-results-content');
   const ytFavsList = document.getElementById('yt-favs-list');
   const ytFavsEmpty = document.getElementById('yt-favs-empty');
+  const ytLoopBtn = document.getElementById('yt-np-loop-btn');
   const ytFavBtn = document.getElementById('yt-np-fav-btn');
   const ytPlayPauseBtn = document.getElementById('yt-play-pause-btn');
   const ytVolSlider = document.getElementById('yt-vol');
@@ -1663,6 +1724,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Loop Button on Now Playing Card
+  ytLoopBtn?.addEventListener('click', () => {
+    yt.toggleLoop();
+  });
+
   // Favorite Star on Now Playing Card
   ytFavBtn?.addEventListener('click', () => {
     yt.toggleFavoriteCurrent();
@@ -1724,6 +1790,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── Initial Render ───────────────────────────────────── */
   syncSettingsUI();
+  yt.syncLoopButton();
   renderTimer();
   renderStartBtn();
 });
