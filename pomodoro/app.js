@@ -697,9 +697,9 @@ class YouTubeManager {
     }
 
     document.getElementById('yt-playing-badge')?.classList.toggle('hidden', !this.isPlaying);
-    document.getElementById('btn-music')?.classList.toggle('active',
-      !document.getElementById('youtube-widget')?.classList.contains('hidden')
-    );
+    const isYtOpen = !document.getElementById('youtube-widget')?.classList.contains('hidden');
+    document.getElementById('btn-music')?.classList.toggle('active', isYtOpen);
+    document.getElementById('yt-backdrop')?.classList.toggle('hidden', !isYtOpen);
 
     // Sync bottom-left floating Now Playing pill (only visible when actively playing)
     const bnp = document.getElementById('bottom-now-playing');
@@ -1411,14 +1411,27 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   btnParticles?.classList.toggle('active', particles.active);
 
+  const ytBackdrop = document.getElementById('yt-backdrop');
+
+  function setYtWidgetVisible(show) {
+    if (!ytWidget) return;
+    ytWidget.classList.toggle('hidden', !show);
+    btnMusic?.classList.toggle('active', show);
+    ytBackdrop?.classList.toggle('hidden', !show);
+  }
+
   btnMusic?.addEventListener('click', () => {
-    const hidden = ytWidget.classList.toggle('hidden');
-    btnMusic.classList.toggle('active', !hidden);
+    const isNowHidden = ytWidget.classList.contains('hidden');
+    setYtWidgetVisible(isNowHidden);
   });
 
   document.getElementById('bottom-now-playing')?.addEventListener('click', () => {
-    const hidden = ytWidget.classList.toggle('hidden');
-    btnMusic?.classList.toggle('active', !hidden);
+    const isNowHidden = ytWidget.classList.contains('hidden');
+    setYtWidgetVisible(isNowHidden);
+  });
+
+  ytBackdrop?.addEventListener('click', () => {
+    setYtWidgetVisible(false);
   });
 
   btnBg?.addEventListener('click', () =>
@@ -1553,8 +1566,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Widget Close Cross Button
   ytCloseBtn?.addEventListener('click', () => {
-    ytWidget.classList.add('hidden');
-    btnMusic?.classList.remove('active');
+    setYtWidgetVisible(false);
   });
 
   // Switch Widget Tabs
@@ -1781,8 +1793,7 @@ document.addEventListener('DOMContentLoaded', () => {
       case 'Escape':
         document.getElementById('bg-overlay-modal')?.classList.add('hidden');
         document.getElementById('settings-overlay')?.classList.add('hidden');
-        ytWidget?.classList.add('hidden');
-        btnMusic?.classList.remove('active');
+        setYtWidgetVisible(false);
         if (zenMode) toggleZen(false);
         break;
     }

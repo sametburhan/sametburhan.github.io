@@ -25,7 +25,8 @@
   --w05: rgba(255, 255, 255, 0.05);
 
   /* Timer Size */
-  --timer-size: clamp(52px, 14vw, 150px);
+  --timer-size: clamp(46px, min(14vw, 15vh), 140px);
+  --clock-size: clamp(52px, min(18vw, 19vh), 170px);
 
   /* Toolbar */
   --toolbar-bg: rgba(8, 8, 16, 0.78);
@@ -50,6 +51,8 @@ html,
 body {
   width: 100%;
   height: 100%;
+  height: 100dvh;
+  min-height: 100dvh;
   overflow: hidden;
 }
 
@@ -110,11 +113,18 @@ input {
   position: relative;
   z-index: 2;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  height: 100dvh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  padding-top: env(safe-area-inset-top, 0);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+  padding-left: env(safe-area-inset-left, 0);
+  padding-right: env(safe-area-inset-right, 0);
+  box-sizing: border-box;
 }
 
 /* ── Header ───────────────────────────────────────────────── */
@@ -147,6 +157,19 @@ input {
   object-fit: contain;
   display: block;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  flex-shrink: 0;
+}
+
+.logo-svg-fallback {
+  display: none;
+  width: 28px;
+  height: 28px;
+  color: var(--w100);
+  flex-shrink: 0;
+}
+
+.logo-svg-fallback.visible-logo-fallback {
+  display: block;
 }
 
 .logo svg {
@@ -258,8 +281,10 @@ input {
   flex: 1;
   width: 100%;
   max-width: 560px;
-  padding: 0 20px;
+  padding: 0 16px;
+  margin: auto 0;
   transition: all var(--dur-slow) var(--ease-out);
+  min-height: 0;
 }
 
 /* ── Mode Tabs ────────────────────────────────────────────── */
@@ -676,9 +701,10 @@ input {
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
   border: 1px solid var(--glass-border);
   border-radius: 100px;
-  margin-bottom: 26px;
+  margin-bottom: max(20px, env(safe-area-inset-bottom, 20px));
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
   transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+  flex-shrink: 0;
 }
 
 .tool-btn {
@@ -731,6 +757,10 @@ input {
 
 #app.clock-active #main-content {
   max-width: 100%;
+}
+
+#app.clock-active .timer-display {
+  font-size: var(--clock-size);
 }
 
 /* ── Bottom-Left Aesthetic Now Playing Pill ─────────────────── */
@@ -843,29 +873,46 @@ input {
   line-height: 1.2;
 }
 
-/* Responsive: Collapse to compact animated icon button on smaller/narrow screens */
+/* Responsive: Place elegantly above toolbar on mobile screens so it never collides */
 @media (max-width: 768px) {
   #bottom-now-playing {
-    bottom: 24px;
-    left: 20px;
-    width: 38px;
-    height: 38px;
-    padding: 0;
-    border-radius: 50%;
-    justify-content: center;
-    gap: 0;
+    bottom: calc(72px + max(16px, env(safe-area-inset-bottom, 16px)));
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    max-width: min(290px, calc(100vw - 32px));
+    padding: 6px 14px 6px 10px;
+    border-radius: 100px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55), 0 0 20px rgba(147, 51, 234, 0.25);
+  }
+
+  #bottom-now-playing:hover {
+    transform: translateX(-50%) translateY(-2px);
+  }
+
+  #bottom-now-playing.hidden {
+    transform: translateX(-50%) translateY(10px) scale(0.96) !important;
   }
 
   #bottom-now-playing .bnp-info {
-    display: none !important;
+    display: flex !important;
+    max-width: 190px;
   }
+}
 
-  #bottom-now-playing .bnp-icon-wrap {
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    border: none;
-  }
+/* ── YouTube Backdrop (Mobile) ────────────────────────────── */
+#yt-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 48;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: overlay-in var(--dur-norm) var(--ease-out);
+}
+
+#yt-backdrop.hidden {
+  display: none !important;
 }
 
 /* ── YouTube Widget ───────────────────────────────────────── */
@@ -887,6 +934,16 @@ input {
   animation: widget-in 0.28s var(--ease-out);
   display: flex;
   flex-direction: column;
+}
+
+.yt-drag-handle {
+  display: none;
+  width: 38px;
+  height: 4px;
+  background: var(--w20);
+  border-radius: 4px;
+  margin: 10px auto 4px;
+  flex-shrink: 0;
 }
 
 @keyframes widget-in {
@@ -1398,14 +1455,15 @@ input {
   position: fixed;
   inset: 0;
   z-index: 200;
-  background: rgba(0, 0, 0, 0.54);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: clamp(10px, 3vw, 24px);
   animation: overlay-in var(--dur-norm) var(--ease-out);
+  overflow-y: auto;
 }
 
 @keyframes overlay-in {
@@ -1424,10 +1482,10 @@ input {
   -webkit-backdrop-filter: blur(28px);
   border: 1px solid var(--glass-border);
   border-radius: 22px;
-  padding: 28px 30px 30px;
+  padding: clamp(20px, 3.5vw, 28px) clamp(16px, 3.5vw, 30px);
   width: 100%;
   max-width: 720px;
-  max-height: 86vh;
+  max-height: min(88vh, 88dvh);
   overflow-y: auto;
   box-shadow: 0 30px 90px rgba(0, 0, 0, 0.7);
   animation: modal-in 0.28s var(--ease-out);
@@ -1977,42 +2035,462 @@ input {
   display: none !important;
 }
 
-/* ── Responsive ───────────────────────────────────────────── */
-@media (max-width: 600px) {
-  #header {
-    padding: 16px 20px;
+/* ── Touch Optimization ───────────────────────────────────── */
+@media (hover: none) {
+  .task-item .task-delete-btn {
+    opacity: 0.7;
   }
 
+  .bg-photo-item .bg-unsplash-link {
+    opacity: 0.85;
+  }
+}
+
+/* ── Tablet & Small Laptop (max-width: 1024px) ────────────── */
+@media (max-width: 1024px) {
+  #header {
+    padding: 16px 22px;
+  }
+
+  #main-content {
+    max-width: 520px;
+  }
+
+  #youtube-widget {
+    left: 16px;
+    width: 320px;
+  }
+}
+
+/* ── Tablet Portrait & Mobile Large (max-width: 768px) ────── */
+@media (max-width: 768px) {
+  #header {
+    padding: 14px 18px;
+  }
+
+  /* YouTube Widget turns into a premier Bottom Sheet Drawer */
+  #youtube-widget {
+    top: auto !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: 540px;
+    margin: 0 auto;
+    border-radius: 24px 24px 0 0 !important;
+    max-height: min(84dvh, 84vh) !important;
+    border-bottom: none !important;
+    box-shadow: 0 -12px 48px rgba(0, 0, 0, 0.8), 0 0 32px rgba(0, 0, 0, 0.5) !important;
+    animation: widget-slide-up 0.32s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    padding-bottom: max(16px, env(safe-area-inset-bottom, 16px));
+  }
+
+  @keyframes widget-slide-up {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  .yt-drag-handle {
+    display: block;
+  }
+
+  .bg-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .weather-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ── Mobile Standard (max-width: 600px) ───────────────────── */
+@media (max-width: 600px) {
+  #header {
+    padding: 12px 16px;
+    gap: 8px;
+  }
+
+  /* Keep mode pill centered without absolute overlap collision */
   .mode-switch-pill {
-    position: static;
+    position: relative;
+    left: auto;
     transform: none;
+    order: 2;
+  }
+
+  .logo {
+    order: 1;
+    font-size: 15px;
+    gap: 8px;
+  }
+
+  .logo-img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .header-right-group {
+    order: 3;
+    gap: 6px;
+  }
+
+  /* Hide redundant live clock in header on mobile - already visible in phone status bar */
+  #live-clock-display {
+    display: none;
+  }
+
+  #focus-tracker {
+    padding: 5px 8px;
+    font-size: 11.5px;
+  }
+
+  .header-icon-btn {
+    width: 30px;
+    height: 30px;
   }
 
   .mode-tabs {
     gap: 2px;
+    margin-bottom: 14px;
+    padding: 3px;
   }
 
   .mode-tab {
-    padding: 7px 14px;
-    font-size: 13px;
+    padding: 6px 14px;
+    font-size: 12.5px;
   }
 
-  .task-section,
-  .task-row {
+  .session-dots {
+    margin-bottom: 10px;
+    gap: 7px;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .quick-add-row {
+    margin-bottom: 14px;
+    gap: 6px;
+  }
+
+  .quick-add-btn {
+    padding: 5px 11px;
+    font-size: 11.5px;
+  }
+
+  .task-section {
     max-width: 100%;
+    margin-bottom: 16px;
   }
 
-  #youtube-widget {
-    width: calc(100vw - 32px);
-    left: 16px;
-    bottom: 84px;
+  .task-row {
+    padding: 9px 14px;
+  }
+
+  /* iOS safe font-size prevents auto-zoom on input focus */
+  #task-input,
+  #bg-search-input,
+  #bg-custom-url-input,
+  #yt-search-input {
+    font-size: 16px !important;
+  }
+
+  .task-list {
+    max-height: clamp(80px, 18vh, 140px);
+  }
+
+  .controls-row {
+    gap: 10px;
+  }
+
+  .icon-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .start-btn {
+    padding: 13px 40px;
+    font-size: 16px;
+    min-width: 136px;
+  }
+
+  #toolbar {
+    margin-bottom: max(14px, env(safe-area-inset-bottom, 14px));
+    padding: 6px 10px;
+    gap: 4px;
+  }
+
+  .tool-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Modal responsiveness */
+  .modal {
+    padding: 20px 16px 20px;
+    border-radius: 18px;
+    max-height: min(90vh, 90dvh);
+  }
+
+  .modal-head {
+    margin-bottom: 16px;
+  }
+
+  .modal-head h2 {
+    font-size: 17px;
+  }
+
+  .opacity-ctrl input[type="range"] {
+    width: 70px;
+  }
+
+  .bg-search-container {
+    margin-bottom: 14px;
+    gap: 8px;
   }
 
   .bg-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
   }
 
   .weather-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .weather-card {
+    padding: 16px 10px;
+    border-radius: 12px;
+  }
+
+  .weather-card span {
+    font-size: 12px;
+  }
+
+  /* Settings row layout */
+  .setting-row {
+    padding: 11px 13px;
+    border-radius: 12px;
+  }
+
+  .setting-row label {
+    font-size: 13px;
+  }
+
+  .s-decr,
+  .s-incr {
+    width: 28px;
+    height: 28px;
+    font-size: 15px;
+  }
+
+  .s-val {
+    font-size: 17px;
+    min-width: 24px;
+  }
+
+  .s-unit {
+    font-size: 11.5px;
+    min-width: 36px;
+  }
+}
+
+/* ── Mobile Compact / Small Phones (max-width: 380px) ─────── */
+@media (max-width: 380px) {
+  #header {
+    padding: 10px 12px;
+  }
+
+  .logo span {
+    display: none; /* Icon-only logo for tight screens */
+  }
+
+  .pill-btn {
+    width: 38px;
+    height: 28px;
+  }
+
+  .mode-tab {
+    padding: 5px 10px;
+    font-size: 11.5px;
+  }
+
+  .start-btn {
+    padding: 12px 32px;
+    font-size: 15px;
+    min-width: 120px;
+  }
+
+  .tool-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .bg-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+}
+
+/* ── Landscape Orientation on Phones (max-height: 520px) ──── */
+@media (max-height: 520px) and (orientation: landscape) {
+  #header {
+    padding: 6px 16px;
+  }
+
+  .logo {
+    font-size: 14px;
+  }
+
+  .logo-img {
+    width: 26px;
+    height: 26px;
+  }
+
+  .pill-btn {
+    width: 36px;
+    height: 26px;
+  }
+
+  #live-clock-display {
+    padding: 3px 8px;
+    font-size: 12px;
+  }
+
+  #focus-tracker {
+    padding: 3px 8px;
+    font-size: 11px;
+  }
+
+  .mode-tabs {
+    margin-bottom: 6px;
+    padding: 2px;
+  }
+
+  .mode-tab {
+    padding: 4px 12px;
+    font-size: 11.5px;
+  }
+
+  .session-dots {
+    margin-bottom: 6px;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .timer-display {
+    font-size: clamp(36px, 12vh, 56px) !important;
+    margin-bottom: 6px;
+  }
+
+  .quick-add-row {
+    margin-bottom: 6px;
+    gap: 4px;
+  }
+
+  .quick-add-btn {
+    padding: 3px 10px;
+    font-size: 11px;
+  }
+
+  .task-section {
+    margin-bottom: 8px;
+  }
+
+  .task-row {
+    padding: 6px 12px;
+  }
+
+  .task-list {
+    max-height: 60px;
+  }
+
+  .controls-row {
+    gap: 8px;
+  }
+
+  .icon-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .start-btn {
+    padding: 8px 30px;
+    font-size: 14px;
+    min-width: 110px;
+  }
+
+  #toolbar {
+    padding: 4px 8px;
+    margin-bottom: max(6px, env(safe-area-inset-bottom, 6px));
+  }
+
+  .tool-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  #bottom-now-playing {
+    bottom: 8px;
+    left: 8px;
+    padding: 4px 8px;
+  }
+
+  /* YouTube widget in landscape phone */
+  #youtube-widget {
+    max-height: 94vh !important;
+  }
+}
+
+/* ── Ultra-Wide & 4K Displays (min-width: 1921px) ─────────── */
+@media (min-width: 1921px) {
+  :root {
+    --timer-size: clamp(90px, 9vw, 170px);
+    --clock-size: clamp(110px, 11vw, 200px);
+  }
+
+  #header {
+    padding: 28px 48px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .logo-img {
+    width: 44px;
+    height: 44px;
+  }
+
+  #main-content {
+    max-width: 720px;
+  }
+
+  .start-btn {
+    padding: 18px 64px;
+    font-size: 20px;
+    min-width: 200px;
+  }
+
+  .mode-tab {
+    font-size: 15px;
+    padding: 10px 28px;
+  }
+
+  .tool-btn {
+    width: 50px;
+    height: 50px;
   }
 }
